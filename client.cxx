@@ -37,7 +37,10 @@ Client::Client(Socket * socket, bool managed)
 
 Client::~Client(void)
 {
-    delete socket;
+    if (managed)
+    {
+        delete socket;
+    }
 }
 
 void Client::setSocket(Socket * socket)
