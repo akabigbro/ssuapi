@@ -43,9 +43,19 @@ Client::~Client(void)
     }
 }
 
+Socket * Client::getSocket(void)
+{
+    return socket;
+}
+
 void Client::setSocket(Socket * socket)
 {
     this->socket = socket;
+}
+
+bool Client::getManaged(void)
+{
+    return managed;
 }
 
 void Client::setManaged(bool managed)
