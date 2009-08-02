@@ -4,6 +4,7 @@ void TcpServer::Execute(void)
 {
     while (IsRunning())
     {
+        TcpSocket * socket = (TcpSocket *) getSocket();
         TcpSocket * connection = new TcpSocket;
         try
         {
@@ -19,7 +20,11 @@ void TcpServer::Execute(void)
     }
 }
 
+TcpServer::TcpServer(void)
+{
+}
+
 TcpServer::TcpServer(TcpSocket * socket, bool managed)
-    : Server(socket, managed), socket(socket)
+    : Server(socket, managed)
 {
 }

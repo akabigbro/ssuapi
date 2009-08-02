@@ -20,7 +20,10 @@ class Client : public Thread
         Client(Socket * socket, bool managed = true);
         ~Client(void);
 
+        Socket * getSocket(void);
         void setSocket(Socket * socket);
+
+        bool getManaged(void);
         void setManaged(bool managed);
 };
 
