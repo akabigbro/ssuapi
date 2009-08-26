@@ -25,6 +25,16 @@ void Server::Execute(void)
     }
 }
 
+Socket * Server::getSocket(void)
+{
+    return socket;
+}
+
+Server::Server(void)
+    : socket(NULL), managed(false)
+{
+}
+
 Server::Server(Socket * socket, bool managed)
     : socket(socket), managed(managed)
 {
@@ -36,4 +46,14 @@ Server::~Server(void)
     {
         delete socket;
     }
+}
+
+void Server::setSocket(Socket * socket)
+{
+    this->socket = socket;
+}
+
+void Server::setManaged(bool managed)
+{
+    this->managed = managed;
 }
