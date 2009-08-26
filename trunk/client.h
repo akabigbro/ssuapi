@@ -16,8 +16,15 @@ class Client : public Thread
         virtual void OnDisconnect(Socket * socket)=0;
         virtual void OnError(Socket * socket, int & error)=0;
     public:
+        Client(void);
         Client(Socket * socket, bool managed = true);
         ~Client(void);
+
+        Socket * getSocket(void);
+        void setSocket(Socket * socket);
+
+        bool getManaged(void);
+        void setManaged(bool managed);
 };
 
 #endif//CLIENT_H

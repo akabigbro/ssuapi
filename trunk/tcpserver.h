@@ -7,10 +7,9 @@
 class TcpServer : public Server
 {
     private:
-        TcpSocket * socket;
-
         void Execute(void);
     public:
+        TcpServer(void);
         TcpServer(TcpSocket * socket, bool managed = true);
 };
 

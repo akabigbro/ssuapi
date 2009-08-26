@@ -2,7 +2,7 @@
 
 void Client::Execute(void)
 {
-    while (!Terminated)
+    while (NULL != socket && !Terminated)
     {
         char buffer[32] = {0};
         try
@@ -25,6 +25,11 @@ void Client::Execute(void)
     }
 }
 
+Client::Client(void)
+    : socket(NULL), managed(false)
+{
+}
+
 Client::Client(Socket * socket, bool managed)
     : socket(socket), managed(managed)
 {
@@ -32,5 +37,28 @@ Client::Client(Socket * socket, bool managed)
 
 Client::~Client(void)
 {
-    delete socket;
+    if (managed)
+    {
+        delete socket;
+    }
+}
+
+Socket * Client::getSocket(void)
+{
+    return socket;
+}
+
+void Client::setSocket(Socket * socket)
+{
+    this->socket = socket;
+}
+
+bool Client::getManaged(void)
+{
+    return managed;
+}
+
+void Client::setManaged(bool managed)
+{
+    this->managed = managed;
 }
