@@ -6,6 +6,6 @@ lib: $(objects)
 	$(CXX) $(CFLAGS) --shared -o libsocketutils.so $(objects)
 
 clean:
-	rm -f *.o libsocketutils.so
+	rm -f *.o *.so
 
 include $(wildcard *.mk)
