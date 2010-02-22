@@ -1,2 +1,2 @@
 tcpserver.o:
-	$(CXX) $(CFLAGS) -c tcpserver.cxx
+	$(CXX) $(CFLAGS) -c tcpserver.cxx -Issapi -Istapi

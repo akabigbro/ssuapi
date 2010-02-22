@@ -2,9 +2,10 @@
 
 void TcpServer::Execute(void)
 {
+    TcpSocket * socket = (TcpSocket *) getSocket();
+    socket->Listen(pending);
     while (IsRunning())
     {
-        TcpSocket * socket = (TcpSocket *) getSocket();
         TcpSocket * connection = new TcpSocket;
         try
         {
@@ -21,10 +22,11 @@ void TcpServer::Execute(void)
 }
 
 TcpServer::TcpServer(void)
+    : pending(LISTEN_PENDING)
 {
 }
 
-TcpServer::TcpServer(TcpSocket * socket, bool managed)
-    : Server(socket, managed)
+TcpServer::TcpServer(TcpSocket * socket, bool managed, int pending)
+    : Server(socket, managed), pending(pending)
 {
 }
