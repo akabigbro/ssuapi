@@ -1,2 +1,2 @@
 server.o:
-	$(CXX) $(CFLAGS) -c server.cxx
+	$(CXX) $(CFLAGS) -c server.cxx -Issapi -Istapi
