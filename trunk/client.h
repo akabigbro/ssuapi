@@ -1,16 +1,14 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include "thread.h"
+#include "runnable.h"
 #include "socket.h"
 
-class Client : public Thread
+class Client : public Runnable
 {
     private:
         Socket * socket;
         bool managed;
-
-        void Execute(void);
     protected:
         virtual void OnData(Socket * socket)=0;
         virtual void OnDisconnect(Socket * socket)=0;
@@ -19,6 +17,8 @@ class Client : public Thread
         Client(void);
         Client(Socket * socket, bool managed = true);
         ~Client(void);
+
+        void run(void);
 
         Socket * getSocket(void);
         void setSocket(Socket * socket);
