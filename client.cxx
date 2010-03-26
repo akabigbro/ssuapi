@@ -1,30 +1,5 @@
 #include "client.h"
 
-void Client::Execute(void)
-{
-    while (NULL != socket && !Terminated)
-    {
-        char buffer[32] = {0};
-        try
-        {
-            if (0 < socket->Read(buffer, sizeof(buffer), MSG_PEEK))
-            {
-                OnData(socket);
-            }
-            else
-            {
-                OnDisconnect(socket);
-                Terminate();
-            }
-        }
-        catch (int & ex)
-        {
-            OnError(socket, ex);
-            Terminate();
-        }
-    }
-}
-
 Client::Client(void)
     : socket(NULL), managed(false)
 {
@@ -40,6 +15,23 @@ Client::~Client(void)
     if (managed)
     {
         delete socket;
+    }
+}
+
+void Client::run(void)
+{
+    char buffer[32] = {0};
+    try
+    {
+        while (0 < socket->Read(buffer, sizeof(buffer), MSG_PEEK))
+        {
+            OnData(socket);
+        }
+        OnDisconnect(socket);
+        }
+    catch (int & ex)
+    {
+        OnError(socket, ex);
     }
 }
 
