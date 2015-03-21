@@ -1,0 +1,1 @@
+An API to utilize SSAPI (Simple Sockets API) and STAPI (Simple Threads API) into a usable class set.
